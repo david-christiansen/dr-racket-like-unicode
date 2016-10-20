@@ -1,9 +1,11 @@
 ;;; dr-racket-like-unicode.el --- An Emacs implementation of DrRacket's unicode input  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  David Christiansen
+;; Copyright (C) 2016 David Christiansen
 
 ;; Author: David Christiansen <david@davidchristiansen.dk>
 ;; Keywords: i18n, tools
+;; Package-Requires: ((emacs "24"))
+;; Version: 1.0.0
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
