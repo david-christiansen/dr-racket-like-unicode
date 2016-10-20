@@ -1,4 +1,4 @@
-;;; dr-racket-like-unicode.el --- An Emacs implementation of DrRacket's unicode input  -*- lexical-binding: t; -*-
+;;; dr-racket-like-unicode.el --- DrRacket-style unicode input -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016 David Christiansen
 
