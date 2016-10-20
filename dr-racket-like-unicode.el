@@ -247,7 +247,7 @@ Customize `dr-racket-like-unicode-table' to change the collection of unicode sym
               (progn (delete-region start end)
                      (goto-char start)
                      (insert (cdr unicode)))
-            (message "Don't understand `%s' as a Unicode abbreviation." code)))))))
+            (message "Did't understand `%s' as a Unicode abbreviation" code)))))))
 
 
 (defvar dr-racket-like-unicode-map
