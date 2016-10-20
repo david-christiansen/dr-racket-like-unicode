@@ -264,7 +264,7 @@ This minor mode binds one command: `dr-racket-like-unicode-char'.
 
 \\{dr-racket-like-unicode-map}"
   nil
-  "Dr\\"
+  " Dr\\"
   dr-racket-like-unicode-map)
 
 (provide 'dr-racket-like-unicode)
