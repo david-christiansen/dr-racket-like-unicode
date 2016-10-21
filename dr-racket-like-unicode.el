@@ -3,9 +3,8 @@
 ;; Copyright (C) 2016 David Christiansen
 
 ;; Author: David Christiansen <david@davidchristiansen.dk>
-;; Keywords: i18n, tools
-;; Package-Requires: ((emacs "24"))
 ;; Keywords: i18n tools
+;; Package-Requires: ((emacs "24.1"))
 ;; Version: 1.0.0
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -234,24 +233,46 @@
   :type 'alist
   :group 'dr-racket-like-unicode)
 
+(defun dr-racket-like-unicode--replace-region (start end new-str)
+  "Replace the contents of the current buffer between position START and END with NEW-STR."
+  (delete-region start end)
+  (goto-char start)
+  (insert new-str))
+
 ;;;###autoload
 (defun dr-racket-like-unicode-char ()
   "Transform the TeX-style code immediately prior to point into Unicode.
 
 Customize `dr-racket-like-unicode-table' to change the collection of unicode symbols."
   (interactive)
-  (let ((ok-p (looking-back "\\\\\"?[a-zA-Z]+" 50)))
+  (let ((ok-p (looking-back "\\\\\"?[a-zA-Z]+" (max 0 (- (point) 50)))))
     (if (not ok-p)
         (error "No character code immediately before point")
       (let ((code (match-string 0))
             (start (match-beginning 0))
             (end (match-end 0)))
-        (let ((unicode (assoc code dr-racket-like-unicode-table)))
-          (if unicode
-              (progn (delete-region start end)
-                     (goto-char start)
-                     (insert (cdr unicode)))
-            (message "Did't understand `%s' as a Unicode abbreviation" code)))))))
+        (let ((unicode-options (cl-remove-if-not (lambda (code-and-str)
+                                                   (string-prefix-p code (car code-and-str)))
+                                                 dr-racket-like-unicode-table)))
+          (pcase unicode-options
+            ('()
+             (error "Did't understand `%s' as a Unicode abbreviation" code))
+            (`((,_code . ,str))
+             (dr-racket-like-unicode--replace-region start end str))
+            (more
+             (let* ((chosen-code (completing-read (concat "Ambiguous code `" code "': ")
+                                                  more
+                                                  nil
+                                                  t
+                                                  nil nil code))
+                    (unicode (assoc chosen-code
+                                    dr-racket-like-unicode-table)))
+               (if unicode
+                   (dr-racket-like-unicode--replace-region
+                    start
+                    end
+                    (cdr unicode))
+                 (error "Did't understand `%s' as a Unicode abbreviation" chosen-code))))))))))
 
 
 (defvar dr-racket-like-unicode-map
