@@ -5,6 +5,7 @@
 ;; Author: David Christiansen <david@davidchristiansen.dk>
 ;; Keywords: i18n, tools
 ;; Package-Requires: ((emacs "24"))
+;; Keywords: i18n tools
 ;; Version: 1.0.0
 
 ;; This program is free software; you can redistribute it and/or modify
