@@ -233,6 +233,7 @@
   :type 'alist
   :group 'dr-racket-like-unicode)
 
+;;;###autoload
 (defun dr-racket-like-unicode-char ()
   "Transform the TeX-style code immediately prior to point into Unicode.
 
@@ -257,6 +258,7 @@ Customize `dr-racket-like-unicode-table' to change the collection of unicode sym
     (define-key map (kbd "C-c \\") 'dr-racket-like-unicode-char)
     map))
 
+;;;###autoload
 (define-minor-mode dr-racket-like-unicode-mode
   "A minor mode for writing Unicode as in DrDr-Racket.
 
