@@ -12,7 +12,7 @@ customizable table =dr-racket-like-unicode-table= to decide how to
 transform the string immediately prior to point.
 
 The package also defines a minor mode, =dr-racket-like-unicode-mode=,
-that binds =C-c \= to =dr-racket-like-unicode-mode=. This can be
+that binds =C-c \= to =dr-racket-like-unicode-char=. This can be
 useful if you want to enable it only in some modes.
 
 For an experience more like DrRacket, rebind "C-\" to
