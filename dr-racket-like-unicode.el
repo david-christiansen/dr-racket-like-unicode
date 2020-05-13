@@ -245,7 +245,7 @@
 
 Customize `dr-racket-like-unicode-table' to change the collection of unicode symbols."
   (interactive)
-  (let ((ok-p (looking-back "\\\\\"?[a-zA-Z]+" (max 0 (- (point) 50)))))
+  (let ((ok-p (looking-back "\\\\\"?[a-zA-Z0-9_]+" (max 0 (- (point) 50)))))
     (if (not ok-p)
         (error "No character code immediately before point")
       (let ((code (match-string 0))
