@@ -15,7 +15,7 @@ The package also defines a minor mode, =dr-racket-like-unicode-mode=,
 that binds =C-c \= to =dr-racket-like-unicode-char=. This can be
 useful if you want to enable it only in some modes.
 
-For an experience more like DrRacket, rebind "C-\" to
+For an experience more like DrRacket, rebind =C-\= to
 =dr-racket-like-unicode-char=, like this:
 
 #+BEGIN_SRC elisp
