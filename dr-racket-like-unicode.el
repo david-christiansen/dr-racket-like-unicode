@@ -4,8 +4,9 @@
 
 ;; Author: David Christiansen <david@davidchristiansen.dk>
 ;; Keywords: i18n tools
-;; Package-Requires: ((emacs "24.1"))
+;; Package-Requires: ((emacs "24.3"))
 ;; Version: 1.1
+;; URL: https://github.com/david-christiansen/dr-racket-like-unicode
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -29,6 +30,8 @@
 ;; TeX-syntax symbol into its Unicode equivalent.
 
 ;;; Code:
+
+(require 'cl-lib)
 
 (defgroup dr-racket-like-unicode
   '()
@@ -234,7 +237,9 @@
   :group 'dr-racket-like-unicode)
 
 (defun dr-racket-like-unicode--replace-region (start end new-str)
-  "Replace the contents of the current buffer between position START and END with NEW-STR."
+  "Replace the between positions START and END with NEW-STR.
+
+This occurs in the current buffer."
   (delete-region start end)
   (goto-char start)
   (insert new-str))
@@ -243,7 +248,8 @@
 (defun dr-racket-like-unicode-char ()
   "Transform the TeX-style code immediately prior to point into Unicode.
 
-Customize `dr-racket-like-unicode-table' to change the collection of unicode symbols."
+Customize `dr-racket-like-unicode-table' to change the collection of unicode
+symbols."
   (interactive)
   (let ((ok-p (looking-back "\\\\\"?[a-zA-Z0-9_]+" (max 0 (- (point) 50)))))
     (if (not ok-p)
@@ -287,9 +293,8 @@ Customize `dr-racket-like-unicode-table' to change the collection of unicode sym
 This minor mode binds one command: `dr-racket-like-unicode-char'.
 
 \\{dr-racket-like-unicode-map}"
-  nil
-  " Dr\\"
-  dr-racket-like-unicode-map)
+  :lighter " Dr\\"
+  :keymap dr-racket-like-unicode-map)
 
 (provide 'dr-racket-like-unicode)
 ;;; dr-racket-like-unicode.el ends here
